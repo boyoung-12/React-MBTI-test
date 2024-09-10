@@ -52,7 +52,7 @@ const Signup = () => {
             placeholder="ID"
           />
           <InputForPassword
-            type="text"
+            type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}

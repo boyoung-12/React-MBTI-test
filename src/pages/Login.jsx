@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { login } from "../api/auth";
 import { useUserContext } from "../context/UserContext";
@@ -10,6 +10,8 @@ const Login = () => {
     id: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     console.log(e.target.name);
@@ -29,7 +31,9 @@ const Login = () => {
       e.preventDefault();
       const result = await login(formData);
       setUser(result);
-      // Navigate("/home");
+      console.log("result", result);
+      localStorage.setItem("accessToken", result.accessToken);
+      navigate("/");
     } catch (error) {
       window.alert("로그인에 실패했습니다. 다시 시도 해주세여.");
     }
@@ -49,7 +53,7 @@ const Login = () => {
             placeholder="ID"
           />
           <InputForPassword
-            type="text"
+            type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}

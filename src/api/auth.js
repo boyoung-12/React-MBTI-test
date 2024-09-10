@@ -6,9 +6,8 @@ export const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);
   return response.data;
 
-  //여기 리스펀스 변수안에 들어가는것이 내가보내는 정보들인지 아니면 서버로부터 받는 정보인지 확실히 하기->물어보기
+  //여기 리스펀스 변수안에 들어가는것이 서버로부터 받는 정보
 };
-console.log("여기", register); //안찍힘
 
 export const login = async (userData) => {
   const response = await axios.post(`${API_URL}/login`, userData);
@@ -16,12 +15,25 @@ export const login = async (userData) => {
 };
 
 export const getUserProfile = async (token) => {
-  const response = await axios.get(`${API_URL}/user`, token);
+  const response = await axios.get(`${API_URL}/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
-export const updateProfile = async (formData) => {
-  const response = await axios.patch(`${API_URL}/profile`, formData);
+export const updateProfile = async (userNickname, token) => {
+  console.log("token", token);
+  const response = await axios.patch(
+    `${API_URL}/profile`,
+    { nickname: userNickname },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.data;
 };
 
