@@ -17,10 +17,10 @@ const Router = () => {
       <Layout user={user} setUser={setUser}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route
-            path="/Profile"
+            path="/profile"
             element={
               <ProtectedRoute>
                 <Profile />
@@ -28,7 +28,7 @@ const Router = () => {
             }
           />
           <Route
-            path="/Testpage"
+            path="/testpage"
             element={
               <ProtectedRoute>
                 <TestPage />
@@ -36,7 +36,7 @@ const Router = () => {
             }
           />
           <Route
-            path="/TestResultPage"
+            path="/testResultPage"
             element={
               <ProtectedRoute>
                 <TestResultPage />

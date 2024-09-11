@@ -20,13 +20,13 @@ const Layout = ({ children }) => {
           <div>
             {user ? (
               <ForOnlyUser>
-                <Link to="/Profile">profile</Link>
-                <Link to="/Testpage">test</Link>
-                <Link to="/TestResultPage">result</Link>
+                <Link to="/profile">profile</Link>
+                <Link to="/testpage">test</Link>
+                <Link to="/testResultPage">result</Link>
                 <button onClick={handleLogout}>logout</button>
               </ForOnlyUser>
             ) : (
-              <Link to="/Login">login</Link>
+              <Link to="/login">login</Link>
             )}
           </div>
         </NavBar>
