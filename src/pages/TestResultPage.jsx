@@ -5,11 +5,10 @@ import {
   updateTestResultVisibility,
 } from "../api/testResults";
 import TestResultList from "../components/TestResultList";
-import { useUserContext } from "../context/UserContext";
+import styled from "styled-components";
 
 const TestResultPage = () => {
   const [results, setResults] = useState([]);
-  const { user } = useUserContext();
 
   const fetchResults = async () => {
     const data = await getTestResults();
@@ -32,16 +31,25 @@ const TestResultPage = () => {
 
   return (
     <div>
-      <div>
+      <ResultContainer>
         <h1>모든 테스트 결과</h1>
         <TestResultList
           results={results}
-          user={user}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />
-      </div>
+      </ResultContainer>
     </div>
   );
 };
 export default TestResultPage;
+
+const ResultContainer = styled.div`
+  width: 1000px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+`;

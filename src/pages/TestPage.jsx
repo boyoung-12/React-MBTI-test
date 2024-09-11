@@ -14,7 +14,7 @@ const TestPage = () => {
   const handleTestSubmit = async (answers) => {
     const result = calculateMBTI(answers);
     const resultData = {
-      userId: user.id,
+      userId: user.userId,
       nickname: user.nickname,
       result,
       answers,
@@ -27,30 +27,49 @@ const TestPage = () => {
   };
 
   return !isTestDone ? (
-    <div>
+    <Title>
       <h1>MBTI 테스트</h1>
       <TestForm onSubmit={handleTestSubmit} />
-    </div>
+    </Title>
   ) : (
-    <div>
-      <p>제목</p>
+    <ResultBox>
+      <p>테스트결과</p>
       <p>내용</p>
-      <button
-        onClick={() => {
-          setIsTestDone(false);
-        }}
-      >
-        다시 테스트하기
-      </button>
-      <Link to="/testResultPage">모든 결과 보러가기</Link>
-    </div>
+      <ClickBox>
+        <button
+          onClick={() => {
+            setIsTestDone(false);
+          }}
+        >
+          다시 테스트하기
+        </button>
+        <Link to="/testResultPage">모든 결과 보러가기</Link>
+      </ClickBox>
+    </ResultBox>
   );
 };
 
 export default TestPage;
 
-const Title = styled.h1`
+const Title = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+`;
+
+const ResultBox = styled.div`
+  background-color: green;
+  width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  height: 300px;
+  gap: 50px;
+`;
+
+const ClickBox = styled.div`
+  display: flex;
+  gap: 30px;
 `;
